@@ -25,7 +25,6 @@ Repositorio de ejercicios y trabajos.
 
 | nombre |
 | ------ |
-
 Gianni Pasquinelli
 Luis Mera
 Lorena Artieda
