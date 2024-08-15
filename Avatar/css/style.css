@@ -1,0 +1,74 @@
+:root {
+  --color--primary: #dc8c24;
+  --color--primary-ligth: #fcdc7b;
+  --color--primary-dark: #5c3026;
+  --color--secondary: #7094b7;
+  --color--tertiary: #c6b3b0;
+  --color--text: #3c3c44;
+  --color--white: #f5f5f5;
+  --color--black: #0f0f0f;
+
+  --aang--white: #F9EFE3;
+  --aang--blue: #B6D7F4;
+  --aang--yellow: #F4C135;
+  --aang--orange: #EE7223;
+  --aang--red: #6E1700;
+  --aang--brown: #715447;
+
+  --zuko--dark-brown: #441100;
+  --zuko--brown: #6E3208;
+  --zuko--ligth-brown: #A77510;
+  --zuko--beige: #E6BD9E;
+  --zuko--dark-beige: #A46A44;
+
+  --toph--black: #1C2824;
+  --toph--green: #437C1E;
+  --toph--ligth-green: #F1EFC2;
+  --toph--white: #FBFBFB;
+  --toph--tan: #F7D7B7;
+  --toph--dark-yellow: #BEB718;
+
+  --katara--blue: #007CC3;
+  --katara--brown: #50413A;
+  --katara--white: #FEFEFE;
+  --katara--ligth-brown: #F1DCC9;
+  --katara--gray: #A5A9AC;
+  --katara--green: #383C1A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.main-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px 50px;
+  height: 100vh;
+  background-image: url(https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
