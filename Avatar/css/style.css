@@ -42,22 +42,27 @@
   box-sizing: border-box;
 }
 
-
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--color--white);
+  color: var(--color--text);
+}
 
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 50px;
-  background-color: #f8f9fa;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--color--primary);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.3);
   margin-bottom: 1rem;
+  height: 15vh;
 }
 
 .header h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
-  color: #333;
+  color: var(--color--text);
 }
 
 .main-content {
@@ -66,9 +71,161 @@
   align-items: flex-start;
   flex-direction: column;
   padding: 20px 50px;
-  height: 100vh;
+  height: 50vh;
   background-image: url(https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png);
   background-size: contain;
-  background-position: center;
+  background-position: right;
   background-repeat: no-repeat;
+}
+
+.main-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color--text);
+  margin-bottom: 1rem;
+}
+.main-content section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.main-content label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.main-content .zuko{
+  background-color: var(--zuko--dark-brown);
+  color: var(--color--white);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.main-content .katara{
+  background-color: var(--katara--blue);
+  color: var(--color--white);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.main-content .aang{
+  background-color: var(--aang--yellow);
+  color: var(--color--white);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+.main-content .toph{
+  background-color: var(--toph--black);
+  color: var(--color--white);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.main-content .zuko:hover{
+  background-color: var(--zuko--ligth-brown);
+  color: var(--color--white);
+}
+
+.main-content .katara:hover{
+  background-color: var(--katara--brown);
+  color: var(--color--white);
+}
+
+.main-content .aang:hover{
+  background-color: var(--aang--orange);
+  color: var(--color--white);
+}
+
+.main-content .toph:hover{
+  background-color: var(--toph--green);
+  color: var(--color--white);
+}
+
+.main-content input {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color--text);
+  border: 1px solid var(--color--text);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.main-content p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color--text);
+  margin-bottom: 1rem;
+}
+
+.main-content button {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color--text);
+  background-color: var(--color--primary);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.main-content button:hover {
+  background-color: var(--color--primary-dark);
+  color: var(--color--white);
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 20px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+  
+  .main-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .main-content label {
+    font-size: 1.2rem;
+  }
+
+  .main-content .zuko,
+  .main-content .katara,
+  .main-content .aang,
+  .main-content .toph {
+    padding: 0.5rem;
+  }
+  
+  .main-content input {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .main-content p {
+    font-size: 1rem;
+  }
+
+  .main-content button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .main-content button:hover {
+    background-color: var(--color--primary-dark);
+    color: var(--color--white);
+  }
+  
 }
