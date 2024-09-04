@@ -55,14 +55,25 @@ const displayCart = ()=>{
             product.quanty--;
             displayCart();
         })
+        //delete
+        const deleteProduct = modalBody.querySelector(".delete-product");
+        deleteProduct.addEventListener("click", ()=>{
+            deleteCarProduct(product.id);
+        })
     });
     //modal footer
+    const total = cart.reduce((acc, el)=>acc+ el.price * el.quanty, 0);
     const modalFooter = document.createElement("div");
     modalFooter.className = "modal-footer";
     modalFooter.innerHTML = `
-    <div class="total-price">Total :)</div>
+    <div class="total-price">Total $:${total}</div>
     `;
     modalContainer.append(modalFooter);
 }
 
 cartBtn.addEventListener("click",displayCart);
+const deleteCarProduct = (id)=>{
+    const foundId = cart.findIndex((element)=>element.id === id);
+    cart.splice(foundId, 1);
+    displayCart();
+}
