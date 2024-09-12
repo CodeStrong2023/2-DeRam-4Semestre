@@ -22,5 +22,17 @@ a = int('23', 10)
 print(f"a = base decimal: {a}")
 
 # Base binario
-a = int('1010', 2)
+a = int('10111', 2)
 print(f"a = base binario: {a}")
+
+# Base octal
+a = int('12', 8)
+print(f"a = base octal: {a}")
+
+# Base hexadecimal
+a = int('A', 16)
+print(f"a = base hexadecimal: {a}")
+
+# Base 5
+a = int('23', 5)
+print(f"a = base 5: {a}")
