@@ -1,7 +1,7 @@
 console.log('Inicio de programa'); //1
 
 setTimeout(()=>{
-    console.log('Primer timeout'); //5
+    console.log('Primer timeout'); //5+
 }, 3000);
 
 setTimeout(()=>{
