@@ -70,8 +70,56 @@ const displayCart = ()=>{
     modalFooter.className = "modal-footer";
     modalFooter.innerHTML = `
     <div class="total-price">Total $:${total}</div>
+    <button class="btn-primary" id="checkout-btn">go to checkout</button>
+    <div id="wallet_container"></div>
     `;
     modalContainer.append(modalFooter);
+
+    
+    const mp = new MercadoPago("TEST-c49bca0f-6f2b-4e41-9caa-721477adcd40",{
+        locale: "es-AR",
+    });
+
+    const generateCartDescription = () => {
+        return cart.map(product => `${product.productName} (x${product.quanty})`).join(',');
+    }
+
+    document.getElementById("checkout-btn").addEventListener("click", async()=>{
+        try{
+            const orderData={
+                title: generateCartDescription(),
+                quantity: 1,
+                price: total,
+            }
+            
+            const response = await fetch("http://localhost:3000/create_preference", {
+                method: "POST",
+                headers: {
+                    "Content-Type":"application/json",
+                },
+                body: JSON.stringify(orderData),
+            });
+
+            const preference = await response.json();
+            createCheckoutButton(preference.id);
+        }catch(error){
+            alert("error");
+        }
+    })
+
+}
+
+const createCheckoutButton = (preferenceId) =>{
+    const bricksBuilder = mp.bricks();
+    const renderComponent = async () => {
+        if(window.CheckoutButton) window.CheckoutButton.unmount();
+        await bricksBuilder.create("wallet", "wallet_container", {
+            initialization: {
+                preferenceId: preferenceId,
+            },
+        });
+    }
+    renderComponent();
 }
 
 cartBtn.addEventListener("click",displayCart);
