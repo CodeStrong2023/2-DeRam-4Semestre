@@ -1,9 +1,9 @@
-import { Router } from "express";
+import Router from "express-promise-router";
 import { listarTareas, actualizarTarea, crearTarea, eliminarTarea, listarTareaUnica } from "../controllers/tareas.controllers.js";
 
 const router = Router();
 
-router.get('/tareas/', listarTareas);
+router.get('/tareas', listarTareas);
 
 router.get('/tareas/:id', listarTareaUnica);
 
