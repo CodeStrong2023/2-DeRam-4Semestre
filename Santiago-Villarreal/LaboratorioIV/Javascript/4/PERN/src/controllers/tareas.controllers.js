@@ -1,12 +1,23 @@
 import { pool } from "../db.js";
 
-export const listarTareas = (req, res) => res.send('obteniendo tareas');
+export const listarTareas = async(req, res ) => {
+    const resultado = await pool.query('SELECT * FROM tareas');
+    console.log(resultado);
+    return res.json(resultado.rows);
+}
 
-export const listarTareaUnica = (req, res) => res.send('obteniendo tarea unica');
+export const listarTareaUnica = async(req, res) => {
+    const resultado = await pool.query('SELECT * FROM tareas WHERE id = $1', [req.params.id]);
+    if(resultado.rowCount === 0){
+        return res.status(404).json({
+            message: "La tarea no existe"
+        });
+    }
+    return res.json(resultado.rows);
+}
 
 export const crearTarea = async(req, res, next) => {
     const {titulo, descripcion} = req.body;
-    
     try {
         const resultado = await pool.query('INSERT INTO tareas (titulo, descripcion) VALUES ($1, $2) RETURNING *', [titulo, descripcion]);
         res.json(resultado.rows[0]);
@@ -20,6 +31,25 @@ export const crearTarea = async(req, res, next) => {
     } 
 }
 
-export const actualizarTarea = (req, res) => res.send('actualizando tarea');
+export const actualizarTarea = async(req, res) => {
+    const {titulo, descripcion} = req.body;
+    const id = req.params.id;
+    const resultado = await pool.query('UPDATE tareas SET titulo = $1, descripcion = $2 WHERE id = $3 RETURNING *', [titulo, descripcion, id]);
+    return res.json(resultado);
+    if(resultado.rowCount === 0) {
+        return res.status(404).json({
+            message: 'No existe una tarea con ese id'
+        });
+    }
+    return res.json(resultado.rows[0]);
+}
 
-export const eliminarTarea = (req,res) => res.send('eliminando tarea única');
+export const eliminarTarea = async (req,res) => {
+    const resultado = await pool.query('DELETE FROM tareas WHERE id = $1', [req.params.id]);
+    if(resultado.rowCount === 0) {
+        return res.status(404).json({
+            message: 'No existe una tarea con ese id'
+        });
+    }
+    return res.sendStatus(204);
+}
