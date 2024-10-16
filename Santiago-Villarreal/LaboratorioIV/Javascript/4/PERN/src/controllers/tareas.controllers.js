@@ -1,8 +1,8 @@
 import { pool } from "../db.js";
 
 export const listarTareas = async(req, res ) => {
+    console.log(req.usuarioId);
     const resultado = await pool.query('SELECT * FROM tareas');
-    console.log(resultado);
     return res.json(resultado.rows);
 }
 
@@ -35,7 +35,6 @@ export const actualizarTarea = async(req, res) => {
     const {titulo, descripcion} = req.body;
     const id = req.params.id;
     const resultado = await pool.query('UPDATE tareas SET titulo = $1, descripcion = $2 WHERE id = $3 RETURNING *', [titulo, descripcion, id]);
-    return res.json(resultado);
     if(resultado.rowCount === 0) {
         return res.status(404).json({
             message: 'No existe una tarea con ese id'
