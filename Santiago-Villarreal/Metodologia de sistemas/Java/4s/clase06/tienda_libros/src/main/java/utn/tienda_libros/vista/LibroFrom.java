@@ -8,12 +8,17 @@ import utn.tienda_libros.servicio.LibroServicio;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @Component
 public class LibroFrom extends JFrame {
     LibroServicio libroServicio;
     private JPanel panel;
     private JTable tablaLibros;
+    private JTextField idTexto;
     private JTextField LibroTexto;
     private JTextField autorTexto;
     private JTextField precioTexto;
@@ -28,6 +33,68 @@ public class LibroFrom extends JFrame {
         this.libroServicio = libroServicio;
         iniciarForma();
         agregarButton.addActionListener(e -> agregarLibro());
+        tablaLibros.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                cargarLibrosSeleccionados();
+            }
+        });
+        modificarButton.addActionListener(e -> modificarLibro());
+        eliminarButton.addActionListener(e -> eliminarLibro());
+    }
+
+    private void cargarLibrosSeleccionados(){
+        var renglon = tablaLibros.getSelectedRow();
+        if(renglon != -1){
+            String idLibro = tablaLibros.getModel().getValueAt(renglon, 0).toString();
+            idTexto.setText(idLibro);
+            String nombreLibro = tablaLibros.getModel().getValueAt(renglon, 1).toString();
+            LibroTexto.setText(nombreLibro);
+            String autor = tablaLibros.getModel().getValueAt(renglon, 2).toString();
+            autorTexto.setText(autor);
+            String precio = tablaLibros.getModel().getValueAt(renglon, 3).toString();
+            precioTexto.setText(precio);
+            String existencias = tablaLibros.getModel().getValueAt(renglon, 4).toString();
+            ExistenciasTexto.setText(existencias);
+        }
+    }
+
+    private void modificarLibro(){
+        if(this.idTexto.equals("")){
+            mostrarMensaje("Debes seleccionar un registro en la tabla");
+        } else {
+            if(LibroTexto.getText().equals("")){
+                mostrarMensaje("Digite el nombre del libro");
+                LibroTexto.requestFocusInWindow();
+                return;
+            }
+            int idLibro = Integer.parseInt(idTexto.getText());
+            var nombreLibro = LibroTexto.getText();
+            var autor = autorTexto.getText();
+            var precio = Double.parseDouble(precioTexto.getText());
+            var existencias = Integer.parseInt(ExistenciasTexto.getText());
+            var libro = new Libro(idLibro, nombreLibro, autor, precio, existencias);
+            libroServicio.guardarLibro(libro);
+            mostrarMensaje("Se modificó el libro");
+            limpiarFormulario();
+            listarLibros();
+        }
+    }
+
+    private void eliminarLibro(){
+        var renglon = tablaLibros.getSelectedRow();
+        if(renglon != -1){
+            String idLibro = tablaLibros.getModel().getValueAt(renglon, 0).toString();
+            var libro = new Libro();
+            libro.setIdLibro(Integer.parseInt(idLibro));
+            libroServicio.eliminarLibro(libro);
+            mostrarMensaje("Libro " + idLibro + " eliminado");
+            limpiarFormulario();
+            listarLibros();
+        } else {
+            mostrarMensaje("No se ha seleccionado ningún libro de la tabla para eliminar");
+        }
     }
 
     private void iniciarForma(){
@@ -54,7 +121,7 @@ public class LibroFrom extends JFrame {
         var precio = Double.parseDouble(precioTexto.getText());
         var existencias = Integer.parseInt(ExistenciasTexto.getText());
         var libro = new Libro(null, nombreLibro, autor, precio, existencias);
-        /*libro.setNombreLibro(nombreLibro);
+        /* libro.setNombreLibro(nombreLibro);
         libro.setAutor(autor);
         libro.setPrecio(precio);
         libro.setExistencias(existencias);
@@ -77,10 +144,18 @@ public class LibroFrom extends JFrame {
     }
 
     private void createUIComponents() {
-        this.tablaModeloLibros = new DefaultTableModel(0, 5);
+        idTexto = new JTextField("");
+        idTexto.setVisible(false);
+        this.tablaModeloLibros = new DefaultTableModel(0, 5){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         String [] cabecera = {"Id", "Libro", "Autor", "Precio", "Existencias"};
         this.tablaModeloLibros.setColumnIdentifiers(cabecera);
         this.tablaLibros = new JTable(tablaModeloLibros);
+        tablaLibros.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listarLibros();
     }
 
