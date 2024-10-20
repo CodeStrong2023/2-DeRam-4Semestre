@@ -1,17 +1,34 @@
 import Card from "../components/ui/card"
 import Input from "../components/ui/input"
 import Button from "../components/ui/Button"
+import {useForm} from "react-hook-form";
 
 function RegisterPage() {
+  const { register, handleSubmit, formState: {errors} } = useForm();
+  const onSubmit = handleSubmit((data) =>{
+    console.log(data);
+  });
   return (
     <div className="h-[calc(100vh-64px)] flex items-center justify-center">
     <Card>
     <h3 className="text-2xl font-bold">Registro</h3>
-    <form>
-        <Input placeholder="Ingrese su nombre"></Input>
-        <Input placeholder="Ingrese su apellido"></Input>
-        <Input type="email" placeholder="Ingrese su email"></Input>
-        <Input type="password" placeholder="Ingrese su contraseña"></Input>
+    <form onSubmit={onSubmit}>
+        <Input placeholder="Ingrese su nombre" {...register("name", {required:true})}></Input>
+        {
+          errors.name && <p className="text-red-500">Este campo es requerido</p>
+        }
+        <Input placeholder="Ingrese su apellido" {...register("lastName", {required:true})}></Input>
+        {
+          errors.lastName && <p className="text-red-500">Este campo es requerido</p>
+        }
+        <Input type="email" placeholder="Ingrese su email" {...register("email", {required:true})}></Input>
+        {
+          errors.email && <p className="text-red-500">Este campo es requerido</p>
+        }
+        <Input type="password" placeholder="Ingrese su contraseña"{...register("password", {required:true})}></Input>
+        {
+          errors.password && <p className="text-red-500">Este campo es requerido</p>
+        }
         <Button>Registrarse</Button>
       </form>
     </Card>
