@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage"
 import ProfilePage from "./pages/ProfilePage"
 import TareasPage from "./pages/TareasPage"
 import TareasFormPage from "./pages/TareaFormPage"
+import NotFound from "./pages/NotFound"
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path= "/profile" element = {<ProfilePage/>}/>
       <Route path= "/tareas" element = {<TareasPage/>}/>
       <Route path= "/tareaFormPage" element = {<TareasFormPage/>}/>
+      <Route path= "*" element={<NotFound/>}/>
     </Routes>
   )
 }
