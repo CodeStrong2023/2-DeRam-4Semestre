@@ -5,7 +5,7 @@ import md5 from "md5";
 
 export const singin = async(req, res) => {
     const {email, password} = req.body;
-    const resultado = await pool.query("SELECT * FROM usuarios WERE email = $1", [email]);
+    const resultado = await pool.query("SELECT * FROM usuarios WHERE email = $1", [email]);
     if(resultado.rowCount === 0){
         return res.status(400).json({message: "El correo no está registrado"});
     }
@@ -13,6 +13,15 @@ export const singin = async(req, res) => {
     if(!validPass){
         return res.status(400).json({message: "Contraseña incorrecta"});
     }
+    const token = await createAccessToken({id: resultado.rows[0].id});
+        console.log(resultado);
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            maxAge: 60 * 60 * 24 * 1000,
+        });
+    return res.json(resultado.rows[0]);
 }
 
 export const singup =  async(req, res, next) => {

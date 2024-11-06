@@ -2,24 +2,30 @@ import Card from "../components/ui/card"
 import Input from "../components/ui/input"
 import Button from "../components/ui/Button"
 import Label from "../components/ui/label";
-import {useForm} from "react-hook-form";
-import axios from "axios";
-import {Link} from "react-router-dom"
+import {useForm} from "react-hook-form"
+import {Link, useNavigate} from "react-router-dom"
+import { useAuth } from "../context/AuthContext";
 
 function RegisterPage() {
   const { register, handleSubmit, formState: {errors} } = useForm();
+  const {singup, errors:setUserErrors} = useAuth();
+  const navigate = useNavigate();
   const onSubmit = handleSubmit(async(data) =>{
-    console.log(data);
-    const res = await axios.post("http://localhost:3000/api/singup", data, {
-      withCredentials: true,
-      });
-      console.log(res);
+    const user = await singup(data);
+    if(user){
+      navigate("/login");
+    }
   });
   
 
   return (
     <div className="h-[calc(100vh-64px)] flex items-center justify-center">
     <Card>
+      {
+        setUserErrors && setUserErrors.map((error) => (
+          <p className="bg-red-500 text-black p-2">{error}</p>
+        ))
+      }
     <h2 className="text-2xl font-bold">Registro</h2>
     <form onSubmit={onSubmit}>
         <Label htmlFor="name">Nombre</Label>
