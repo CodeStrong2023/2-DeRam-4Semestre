@@ -1,6 +1,6 @@
 import {createContext, useState, useContext, useEffect} from "react";
-import axios from "axios";
-import Cookie from "js-cookie"
+import Cookie from "js-cookie";
+import axios from "../api/axios.js";
 
 export const AuthContext = createContext();
 
@@ -19,9 +19,7 @@ export function AuthProvider({children}){
 
     const singin = async(data)=>{
         try {
-            const res = await axios.post("http://localhost:3000/api/singin", data, {
-                withCredentials: true,
-            });
+            const res = await axios.post("/singin", data);
             console.log(res.data);
             setUser(res.data);
             setIsAuth(true);
@@ -38,9 +36,7 @@ export function AuthProvider({children}){
 
     const singup = async(data)=>{
         try {
-            const res = await axios.post("http://localhost:3000/api/singup", data ,{
-                withCredentials: true,
-            });
+            const res = await axios.post("/singup", data);
             console.log(res);
             setUser(res.data);
             setIsAuth(true);
@@ -56,9 +52,7 @@ export function AuthProvider({children}){
 
     useEffect(() =>{
         if(Cookie.get("token")){
-            axios.get("http://localhost:3000/api/profile", {
-                withCredentials: true,
-            }).then((res)=>{
+            axios.get("/profile").then((res)=>{
                 setUser(res.data);
                 setIsAuth(true);
             }).catch((error)=>{
