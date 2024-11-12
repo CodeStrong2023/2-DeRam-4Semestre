@@ -1,0 +1,315 @@
+:root {
+    --color--primary: #dc8c24;
+    --color--primary-ligth: #fcdc7b;
+    --color--primary-dark: #5c3026;
+    --color--secondary: #7094b7;
+    --color--tertiary: #c6b3b0;
+    --color--text: #3c3c44;
+    --color--white: #f5f5f5;
+    --color--black: #0f0f0f;
+  
+    --aang--white: #F9EFE3;
+    --aang--blue: #B6D7F4;
+    --aang--yellow: #F4C135;
+    --aang--orange: #EE7223;
+    --aang--red: #6E1700;
+    --aang--brown: #715447;
+  
+    --zuko--dark-brown: #441100;
+    --zuko--brown: #6E3208;
+    --zuko--ligth-brown: #A77510;
+    --zuko--beige: #E6BD9E;
+    --zuko--dark-beige: #A46A44;
+  
+    --toph--black: #1C2824;
+    --toph--green: #437C1E;
+    --toph--ligth-green: #F1EFC2;
+    --toph--white: #FBFBFB;
+    --toph--tan: #F7D7B7;
+    --toph--dark-yellow: #BEB718;
+  
+    --katara--blue: #007CC3;
+    --katara--brown: #50413A;
+    --katara--white: #FEFEFE;
+    --katara--ligth-brown: #F1DCC9;
+    --katara--gray: #A5A9AC;
+    --katara--green: #383C1A;
+
+    --ozai--red: #990909;
+    --ozai--brown: #50413A;
+    --ozai--white: #FEFEFE;
+    --ozai--ligth-brown: #F1DCC9;
+    --ozai--gray: #A5A9AC;
+    --ozai--green: #383C1A;
+
+    --azula--lightblue: #47b1d1;
+    --azula--brown: #50413A;
+    --azula--white: #FEFEFE;
+    --azula--ligth-brown: #F1DCC9;
+    --azula--gray: #A5A9AC;
+    --azula--green: #383C1A;
+  
+    --font-title: 27px;
+    --font-p:12px
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://p4.wallpaperbetter.com/wallpaper/168/248/852/avatar-anime-avatar-the-last-airbender-wallpaper-preview.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color--white);
+    color: var(--color--text);
+    font-size: 2rem;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: var(--color--primary);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+    height: 15vh;
+  }
+  
+  .header h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color--text);
+  }
+  
+  .main-content {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px 50px;
+/*    background-image: url(https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png);*/
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+
+  .main-content #seleccionar-personaje{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .main-content #seleccionar-personaje .contenedorCards{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  .main-content #seleccionar-personaje .contenedorCards .cardPersonaje{
+    margin: 1rem;
+    height: 22rem;
+    width: 20rem;
+    border: 2px solid black;
+    border-radius: 2rem;
+    overflow: hidden;
+    background-color: var(--color--primary);
+  }
+
+  .main-content #seleccionar-personaje .contenedorCards .cardPersonaje img{
+    height: 80%;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+  }
+
+  .main-content #seleccionar-personaje .contenedorCards .cardPersonaje img:hover{
+    height: 80%;
+    width: 100%;
+    filter: brightness(1.5);
+  }
+  .main-content #seleccionar-personaje h2 {
+    font-size: 2rem;
+    font-weight: 100%;
+    color: var(--color--text);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .main-content section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .main-content .pieCard{
+    width: 100%;
+    height: 20%;
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-content label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 2rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  
+  .main-content .zuko{
+    background-color: var(--zuko--dark-brown);
+    color: var(--color--white);
+    padding: 1rem;
+  }
+  
+  .main-content .katara{
+    background-color: var(--katara--blue);
+    color: var(--color--white);
+    padding: 1rem;
+  }
+
+  .main-content .aang{
+    background-color: var(--aang--yellow);
+    color: var(--color--white);
+    padding: 1rem;
+
+  }
+  .main-content .toph{
+    background-color: var(--toph--black);
+    color: var(--color--white);
+    padding: 1rem;
+  }
+  .main-content .ozai{
+    background-color: var(--ozai--red);
+    color: var(--color--white);
+    padding: 1rem;
+  }
+
+.main-content .azula{
+  background-color: var(--azula--lightblue);
+  color: var(--color--white);
+  padding: 1rem;
+}
+  .main-content .zuko:hover{
+    background-color: var(--zuko--ligth-brown);
+    color: var(--color--white);
+  }
+  
+  .main-content .katara:hover{
+    background-color: var(--katara--brown);
+    color: var(--color--white);
+  }
+  
+  .main-content .aang:hover{
+    background-color: var(--aang--orange);
+    color: var(--color--white);
+  }
+  
+  .main-content .toph:hover{
+    background-color: var(--toph--green);
+    color: var(--color--white);
+  }
+  
+  .main-content input {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color--text);
+    border: 1px solid var(--color--text);
+    border-radius: 5px;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .main-content p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color--text);
+    margin-bottom: 1rem;
+  }
+  
+  .main-content button {
+    padding: 1rem 2rem;
+    margin-top:3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color--text);
+    background-color: var(--color--primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .main-content button:hover {
+    background-color: var(--color--primary-dark);
+    color: var(--color--white);
+  }
+  
+  @media screen and (max-width: 768px) {
+    .header {
+      padding: 20px;
+    }
+  
+    .header h1 {
+      font-size: 2rem;
+    }
+  
+    .main-content {
+      padding: 20px;
+    }
+    
+    .main-content h2 {
+      font-size: 1.5rem;
+    }
+    
+    .main-content label {
+      font-size: 1.2rem;
+    }
+  
+    .main-content .zuko,
+    .main-content .katara,
+    .main-content .aang,
+    .main-content .toph {
+      padding: 0.5rem;
+    }
+    
+    .main-content input {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    
+    .main-content p {
+      font-size: 1rem;
+    }
+  
+    .main-content button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    
+    .main-content button:hover {
+      background-color: var(--color--primary-dark);
+      color: var(--color--white);
+    }
+    
+  }
+  
+  .prueba {
+    background-color: var(--color--primary);
+    color: var(--color--white);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
